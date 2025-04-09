@@ -1,6 +1,6 @@
 # Instruction to generating input files for MetaHiCNet 
 
-Some scripts to process the intermediate data and plot figures are available in the folder [Scripts](https://github.com/dyxstat/Example-Generating-Input-Files-for-MetaHiCNet/tree/main/Scripts).
+Some scripts to process the intermediate data are available in the folder [Scripts](https://github.com/dyxstat/Example-Generating-Input-Files-for-MetaHiCNet/tree/main/Scripts).
 
 ## Process metagenomic Hi-C (metaHi-C) datasets
 We take the sheep gut metaHi-C datasets for example. 
@@ -18,6 +18,10 @@ samtools command from Samtools: v1.15.1
 MetaCC.py command from MetaCC: v1.2.0
 
 PPR_Meta command from PPR-Meta: v1.1
+
+demovir.sh command from DemoVir: https://github.com/feargalr/Demovir
+
+makeblastdb and blastn command from BLAST: v2.12.0
 ```
 
 **Step 1: Preprocess the raw data**
@@ -74,7 +78,7 @@ Users may also apply other contig binning tools and use the same *generate_binni
 
 **Step 5: Identify viral and plasmid contigs**
 
-We use PPR-Meta to detect both viral and plasmid contigs from the assembled metagenomic data. PPR-Meta assigns scores to each contig for three possible categories: phage, plasmid, and chromosome. The contig is classified based on the highest score, unless all scores are below the specified threshold, in which case it is labeled as uncertain.
+We use PPR-Meta to detect both viral and plasmid contigs from the assembled metagenomic data. Users may employ alternative tools to identify viral and/or plasmid sequences. PPR-Meta assigns scores to each contig for three possible categories: phage, plasmid, and chromosome. The contig is classified based on the highest score, unless all scores are below the specified threshold, in which case it is labeled as uncertain.
 
 Run PPR-Meta with the assembled contigs as input:
 ```
@@ -99,12 +103,12 @@ These files can be used for downstream annotation of mobile genetic elements.
 **Step 6: Generate the Taxonomy Information File**
 To generate the Taxonomy Information File required by MetaHiCNet, we integrate taxonomic annotations from multiple tools applied to different types of contigs and bins.
 
-1. Viral contigs: contigs identified as viral (in viral_contig.fa) are annotated using DemoVir (https://github.com/feargalr/Demovir) in this example, other tools such as VPF-class and Genomad can also be used here:
+1. Viral contigs: contigs identified as viral (in viral_contig.fa) are annotated using DemoVir (https://github.com/feargalr/Demovir) in this example, other tools such as VPF-class and geNomad can also be used here:
    ```
    ./demovir.sh viral_contig.fasta
    ```
    
-2. Plasmid contigs: contigs identified as plasmid (in plasmid_contig.fa) are classified using BLAST against the NCBI RefSeq plasmid database (Release 226). Follow the steps below to download and prepare the BLAST database:
+2. Plasmid contigs: contigs identified as plasmid (in plasmid_contig.fa) are classified using BLAST against the NCBI RefSeq plasmid database. Follow the steps below to download and prepare the BLAST database:
    ```
    # Download RefSeq plasmid sequences (example link)
    wget ftp://ftp.ncbi.nlm.nih.gov/refseq/release/plasmid/plasmid.*.genomic.fna.gz
@@ -127,9 +131,9 @@ To generate the Taxonomy Information File required by MetaHiCNet, we integrate t
 
    After obtaining annotations from DemoVir, BLAST, and GTDB-Tk, a custom script can be used to integrate all classifications into a single Taxonomy Information File. This file should include:
    ```
-   * Contig/Bin ID
-   * Type (e.g., viral, plasmid, bacterial)
-   * Taxonomic Assignment (standardized format)
+   * ID: The unique identifier, which can be either a bin ID (if contigs are grouped into bins) or a contig ID (if contigs are annotated individually). 
+   * Category: Specifies whether the bin or contig represents a chromosome, virus, plasmid, or unclassified entity.
+   * Taxonomic classification columns: Users may include hierarchical taxonomic ranks (e.g., phylum, class, order, family, genus, species) to provide structured biological context.
    ```
 
 
