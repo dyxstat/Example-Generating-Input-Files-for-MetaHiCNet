@@ -115,7 +115,7 @@ To generate the Taxonomy Information File required by MetaHiCNet, we integrate t
 
    # Create a BLAST database
    makeblastdb -in refseq_plasmid.fa -dbtype nucl -out refseq_plasmid_db
-   blastn -query plasmid_contig.fa -db refseq_plasmid_db -out plasmid_blast_output.tsv -outfmt 6
+   blastn -query plasmid_contig.fa -db refseq_plasmid_db -out plasmid_blast_output.tsv -outfmt 6  -perc_identity 95 -evalue 1e-5
    ```
    
 3. Host genome bins: contig bins generated in Step 4 (under out_sheep_gut/BIN/) are classified using GTDB-Tk with the classify_wf workflow:
