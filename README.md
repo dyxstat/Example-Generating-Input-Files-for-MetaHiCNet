@@ -3,7 +3,7 @@
 Some scripts to process the intermediate data are available in the folder [Scripts](https://github.com/dyxstat/Example-Generating-Input-Files-for-MetaHiCNet/tree/main/Scripts).
 
 ## Process metagenomic Hi-C (metaHi-C) datasets
-We take the sheep gut metaHi-C datasets for example. 
+We use the sheep gut metaHi-C datasets as an example; the corresponding input files can be downloaded from the MetaHiCNet web server as the example.
 
 **Version of softwares exploited in the analyses**
 ```
