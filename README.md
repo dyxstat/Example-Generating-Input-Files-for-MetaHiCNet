@@ -3,7 +3,7 @@
 Some scripts to process the intermediate data are available in the folder [Scripts](https://github.com/dyxstat/Example-Generating-Input-Files-for-MetaHiCNet/tree/main/Scripts).
 
 ## Process metagenomic Hi-C (metaHi-C) datasets
-We use the sheep gut metaHi-C datasets as an example; the corresponding input files can be downloaded from the MetaHiCNet web server as the input format example.
+We use the sheep gut metaHi-C datasets as an example (BioProject PRJNA595610); the corresponding input files can be downloaded from the MetaHiCNet web server (Run Page) as the input format example (https://metahicnet.com).
 
 **Version of softwares exploited in the analyses**
 ```
@@ -135,6 +135,7 @@ To generate the Taxonomy Information File required by MetaHiCNet, we integrate t
    * Category: Specifies whether the bin or contig represents a chromosome, virus, plasmid, or unclassified entity.
    * Taxonomic classification columns: Users may include hierarchical taxonomic ranks (e.g., phylum, class, order, family, genus, species) to provide structured biological context.
    ```
+   Our MetaHiCNet web page provides an example on the Run page illustrating the format of the Taxonomy Information File, which is also available on the Help page.
 
 
 
