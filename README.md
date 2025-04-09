@@ -78,7 +78,7 @@ Users may also apply other contig binning tools and use the same *generate_binni
 
 **Step 5: Identify viral and plasmid contigs**
 
-We use PPR-Meta to detect both viral and plasmid contigs from the assembled metagenomic data. Users may employ alternative tools to identify viral and/or plasmid sequences. PPR-Meta assigns scores to each contig for three possible categories: phage, plasmid, and chromosome. The contig is classified based on the highest score, unless all scores are below the specified threshold, in which case it is labeled as uncertain.
+We use PPR-Meta to detect both viral and plasmid contigs from the assembled metagenomic data. Users can employ any alternative tools to identify viral and/or plasmid sequences. PPR-Meta assigns scores to each contig for three possible categories: phage, plasmid, and chromosome. The contig is classified based on the highest score, unless all scores are below the specified threshold, in which case it is labeled as uncertain.
 
 Run PPR-Meta with the assembled contigs as input:
 ```
